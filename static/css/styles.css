@@ -1,0 +1,24 @@
+/* --- MENÚ DE OPCIONES --- */
+.menu-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.menu-item {
+  background: #6a4bc4;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: all 0.25s;
+}
+
+.menu-item:hover {
+  background: #8368da;
+  transform: translateY(-3px);
+}

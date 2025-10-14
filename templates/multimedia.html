@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}{{ tipo|capitalize }}{% endblock %}
+{% block content %}
+  <h2>{{ tipo|capitalize }}</h2>
+  
+  <form class="buscar-form" method="get" action="{{ url_for('ver_multimedia', tipo=tipo) }}">
+    <input type="text" name="q" placeholder="Buscar por título..." value="{{ busqueda }}">
+    <button type="submit">Buscar</button>
+  </form>
+  
+  <a href="{{ url_for('agregar', tipo=tipo) }}" class="btn-agregar">➕ Agregar {{tipo}}</a>
+
+  <div class="galeria">
+    {% for item in data %}
+    <div class="card">
+      <a href="{{ url_for('ver_detalle', tipo=tipo, item_id=item[0]) }}">
+        <h3>{{ item[1] }}</h3>
+      </a>
+    </div>
+    {% else %}
+      <p>No se encontraron resultados.</p>
+    {% endfor %}
+  </div>
+
+  {% if total_paginas > 1 %}
+  <div class="paginacion">
+    {% if pagina > 1 %}
+      <a href="{{ url_for('ver_multimedia', tipo=tipo, page=pagina-1, q=busqueda) }}">⬅ Anterior</a>
+    {% endif %}
+
+    <span>Página {{ pagina }} de {{ total_paginas }}</span>
+
+    {% if pagina < total_paginas %}
+      <a href="{{ url_for('ver_multimedia', tipo=tipo, page=pagina+1, q=busqueda) }}">Siguiente ➡</a>
+    {% endif %}
+  </div>
+  {% endif %}
+{% endblock %}

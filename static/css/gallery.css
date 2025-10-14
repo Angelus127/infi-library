@@ -1,0 +1,45 @@
+/* --- GALERÍA DE MULTIMEDIA --- */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+  padding: 0 10px;
+}
+
+.card {
+  background: #2c2436;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  padding: 10px;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  background: #3a3148;
+}
+
+.portada {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin: 10px 0 5px;
+  font-size: 1.1em;
+  color: #e4dfff;
+}
+
+.detalle {
+  background: #2d2438;
+  padding: 25px;
+  border-radius: 12px;
+  display: inline-block;
+  text-align: left;
+  min-width: 280px;
+  max-width: 650px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}

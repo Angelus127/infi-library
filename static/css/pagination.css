@@ -1,0 +1,17 @@
+.paginacion {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.paginacion a {
+  text-decoration: none;
+  color: #a688fa;
+  font-weight: bold;
+}
+
+.paginacion a:hover {
+  color: #c3a4ff;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}INFINITY LIBRARY{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/button.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pagination.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> 
+</head>
+<body>
+  <header>
+    <h1><a href="{{ url_for('index') }}">📚 Biblioteca Multimedia</a></h1>
+    <nav>
+      <a href="{{ url_for('ver_multimedia', tipo='libros') }}">Libros</a> |
+      <a href="{{ url_for('ver_multimedia', tipo='animes') }}">Animes</a> |
+      <a href="{{ url_for('ver_multimedia', tipo='peliculas') }}">Películas</a> |
+	  <a href="{{ url_for('ver_multimedia', tipo='dramas') }}">Dramas</a> |
+	  <a href="{{ url_for('ver_multimedia', tipo='mangas') }}">Mangas</a> |
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>© 2025 Biblioteca Multimedia</p>
+  </footer>
+</body>
+</html>

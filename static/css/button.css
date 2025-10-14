@@ -1,0 +1,48 @@
+button, .btn-agregar {
+  padding: 10px 20px;
+  border: none;
+  background-color: #6a4bc4;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1em;
+  transition: all 0.2s;
+}
+
+button:hover, .btn-agregar:hover {
+  background-color: #8368da;
+  transform: scale(1.05);
+}
+
+.btn-volver {
+  display: inline-block;
+  text-align: center;
+  background-color: #ddd;
+  color: #333;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin: 20px auto;
+  transition: 0.2s;
+}
+
+.btn-volver:hover {
+  background-color: #ccc;
+  transform: scale(1.03);
+}
+
+.btn-borrar {
+  background-color: #b81c1c;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-borrar:hover {
+  background-color: #d13838;
+}

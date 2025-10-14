@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}{{ item[1] }}{% endblock %}
+{% block content %}
+  
+
+  <div class="detalle">
+    <h1>{{ item[1] }}</h1>
+
+    {% if item[2] %}<p><strong>Puntaje: </strong> {{ item[2] }}</p>{% endif %}
+	{% if item[2] %}<p><strong>Estado: </strong> {{ item[3] }}</p>{% endif %}
+    {% if item[4] %}<p><strong>Año: </strong> {{ item[4] }}</p>{% endif %}
+    {% if item[5] %}<p><strong>Tipo/Nacionalidad:</strong> {{ item[5] }}</p>{% endif %}
+    {% if item[6] %}<p><strong>Coleccion/Clase: </strong> {{ item[6] }}</p>{% endif %}
+	{% if item[6] %}<p><strong>Descripcion: </strong> {{ item[7] }}</p>{% endif %}
+  </div>
+  
+   <div>
+	<a class="btn-volver" href="{{ url_for('ver_multimedia', tipo=tipo) }}">⬅ Volver a {{ tipo }}</a>
+   </div>
+   
+   <form action="{{ url_for('borrar', tipo=tipo, item_id=item[0]) }}" method="post" onsubmit="return confirm('¿Seguro que deseas borrar este elemento?');">
+	<button type="submit" class="btn-borrar">🗑️ Borrar</button>
+   </form>
+
+{% endblock %}
