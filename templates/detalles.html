@@ -1,25 +1,68 @@
 {% extends 'base.html' %}
-{% block title %}{{ item[1] }}{% endblock %}
+{% block title %}{{ item.title }}{% endblock %}
+
 {% block content %}
-  
-
   <div class="detalle">
-    <h1>{{ item[1] }}</h1>
+    <h1>{{ item.title }}</h1>
 
-    {% if item[2] %}<p><strong>Puntaje: </strong> {{ item[2] }}</p>{% endif %}
-	{% if item[2] %}<p><strong>Estado: </strong> {{ item[3] }}</p>{% endif %}
-    {% if item[4] %}<p><strong>Año: </strong> {{ item[4] }}</p>{% endif %}
-    {% if item[5] %}<p><strong>Tipo/Nacionalidad:</strong> {{ item[5] }}</p>{% endif %}
-    {% if item[6] %}<p><strong>Coleccion/Clase: </strong> {{ item[6] }}</p>{% endif %}
-	{% if item[6] %}<p><strong>Descripcion: </strong> {{ item[7] }}</p>{% endif %}
+    <!-- PUNTUACION (DETALLES) -->
+    <div class="puntuacion-contenedor">
+      <label for="sliderScore"><strong>Puntuación:</strong></label>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <input
+          id="sliderScore"
+          class="sliderPuntuacion"
+          type="range"
+          min="1.0"
+          max="9.9"
+          step="0.1"
+          value="{{ '%.1f'|format(item.score) if item.score is not none else '1.0' }}"
+          data-tipo="{{ tipo }}"
+          data-item-id="{{ item.id }}"
+        >
+        <div class="valor-puntuacion">{{ '%.1f'|format(item.score) if item.score is not none else '1.0' }}</div>
+      </div>
+    </div>
+
+
+    {% if item.score %}<p><strong>Puntaje:</strong> {{ item.score }}</p>{% endif %}
+    {% if item.year %}<p><strong>Año:</strong> {{ item.year }}</p>{% endif %}
+    {% if item.type %}<p><strong>Tipo:</strong> {{ item.type }}</p>{% endif %}
+    {% if item.country %}<p><strong>Nacionalidad:</strong> {{ item.country }}</p>{% endif %}
+    {% if item.collection %}<p><strong>Colección:</strong> {{ item.collection }}</p>{% endif %}
+    {% if item.class %}<p><strong>Clase:</strong> {{ item.class }}</p>{% endif %}
+    {% if item.description %}<p><strong>Descripción:</strong> {{ item.description }}</p>{% endif %}
+
+    <div class="estado-selector">
+      <h3>Estado</h3>
+      <div class="estado-botones">
+        <form method="post" action="{{ url_for('actualizar_estado', tipo=tipo, item_id=item['id'], nuevo_estado=1) }}">
+          <button type="submit" class="estado ongoing {% if item['status'] == 'Ongoing' %}activo{% endif %}">
+            ⏳ En curso
+          </button>
+        </form>
+  
+        <form method="post" action="{{ url_for('actualizar_estado', tipo=tipo, item_id=item['id'], nuevo_estado=2) }}">
+          <button type="submit" class="estado finished {% if item['status'] == 'Finished' %}activo{% endif %}">
+            🏁 Terminada
+          </button>
+        </form>
+  
+        <form method="post" action="{{ url_for('actualizar_estado', tipo=tipo, item_id=item['id'], nuevo_estado=3) }}">
+          <button type="submit" class="estado planned {% if item['status'] == 'Planned' %}activo{% endif %}">
+            📅 Planeada
+          </button>
+        </form>
+      </div>
+    </div>   
   </div>
   
-   <div>
-	<a class="btn-volver" href="{{ url_for('ver_multimedia', tipo=tipo) }}">⬅ Volver a {{ tipo }}</a>
-   </div>
-   
-   <form action="{{ url_for('borrar', tipo=tipo, item_id=item[0]) }}" method="post" onsubmit="return confirm('¿Seguro que deseas borrar este elemento?');">
-	<button type="submit" class="btn-borrar">🗑️ Borrar</button>
-   </form>
-
+  <div class="acciones">
+    <a class="btn-volver" href="{{ url_for('ver_multimedia', tipo=tipo) }}">⬅ Volver a {{ tipo }}</a>
+    <a class="btn-editar" href="{{ url_for('editar', tipo=tipo, item_id=item.id) }}">✎ Editar</a>
+    <form action="{{ url_for('borrar', tipo=tipo, item_id=item.id) }}" method="post" onsubmit="return confirm('¿Seguro que deseas borrar este elemento?');">
+      <button type="submit" class="btn-borrar">🗑️ Borrar</button>
+    </form>
+  </div>
 {% endblock %}
+

@@ -1,0 +1,53 @@
+.estado-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px 10px 10px;
+  grid-column: span 2;
+  text-align: center;
+}
+
+.estado-botones {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.estado-botones input[type="radio"] {
+  display: none;
+}
+
+.estado-botones label,
+.estado {
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+  font-size: 0.95rem;
+  user-select: none;
+  border: none;
+}
+
+.estado.ongoing,
+.estado-botones label.ongoing { background: #4CAF50; }
+
+.estado.finished,
+.estado-botones label.finished { background: #6c63ff; }
+
+.estado.planned,
+.estado-botones label.planned { background: #9E9E9E; }
+
+.estado-botones label:hover,
+.estado:hover {
+  transform: scale(1.07);
+  opacity: 0.9;
+}
+
+.estado-botones input[type="radio"]:checked + label,
+.estado.activo {
+  border: 2px solid #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}

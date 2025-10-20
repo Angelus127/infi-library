@@ -40,9 +40,66 @@
   box-shadow: 0 0 5px rgba(159, 138, 255, 0.4);
 }
 
-.agregar-form button {
-  grid-column: span 2;
+.editar-form {
+  background: #2e2b3a;
+  border-radius: 15px;
+  padding: 35px;
+  max-width: 700px;
+  margin: 50px auto;
+  box-shadow: 0 4px 15px rgba(120, 100, 255, 0.25);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 30px;
+  text-align: left;
+  color: #f0f0f0;
+  position: relative;
+  border: 1px solid rgba(159, 138, 255, 0.2);
+}
+
+.editar-form::before {
+  content: "✎ Editando";
+  position: absolute;
+  top: -12px;
+  left: 20px;
   background: #6c63ff;
+  color: white;
+  font-size: 0.8em;
+  padding: 3px 8px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+}
+
+.editar-form label {
+  font-weight: bold;
+  font-size: 0.95em;
+  color: #dcd8ff;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.editar-form input[type="text"],
+.editar-form input[type="number"],
+.editar-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #514b66;
+  border-radius: 8px;
+  background-color: #3c3750;
+  color: #f0f0f0;
+  font-size: 0.95em;
+  transition: all 0.3s ease;
+}
+
+.editar-form input:focus,
+.editar-form select:focus {
+  outline: none;
+  border-color: #a99aff;
+  box-shadow: 0 0 5px rgba(169, 154, 255, 0.5);
+}
+
+.editar-form button {
+  grid-column: span 2;
+  background: linear-gradient(90deg, #7b74ff, #5c52ff);
   border: none;
   padding: 12px;
   font-size: 1.05em;
@@ -53,7 +110,22 @@
   font-weight: bold;
 }
 
-.agregar-form button:hover {
-  background: #837bff;
+.editar-form button:hover {
+  background: linear-gradient(90deg, #8e87ff, #6f65ff);
   transform: scale(1.03);
+}
+
+.editar-form a.btn-volver {
+  grid-column: span 2;
+  text-align: center;
+  display: inline-block;
+  margin-top: 15px;
+  color: #bbb;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.3s;
+}
+
+.editar-form a.btn-volver:hover {
+  color: #d0c6ff;
 }

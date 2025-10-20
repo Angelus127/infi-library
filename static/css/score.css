@@ -1,0 +1,74 @@
+/* ====== contenedor y texto ====== */
+.puntuacion-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  grid-column: span 2;
+  margin: 5px;
+  color: #f0efff;
+}
+
+/* valor grande y bonito */
+.valor-puntuacion {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #d9ccff;
+  text-shadow: 0 0 8px rgba(124, 100, 255, 0.12);
+  min-width: 48px;
+  text-align: center;
+}
+
+/* ====== slider base (barra limpia) ====== */
+.sliderPuntuacion {
+  -webkit-appearance: none;
+  appearance: none;
+  width: min(440px, 86%);
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6c63ff 0%, #d3d3d3 0%); /* se actualiza por JS */
+  outline: none;
+  transition: box-shadow 0.18s ease, background 0.18s ease;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+/* thumb: punto limpio (white circle con borde) */
+.sliderPuntuacion::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #6c63ff;
+  box-shadow: 0 2px 10px rgba(108,99,255,0.18);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+.sliderPuntuacion::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 16px rgba(108,99,255,0.28);
+}
+
+/* Firefox thumb */
+.sliderPuntuacion::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #6c63ff;
+  box-shadow: 0 2px 10px rgba(108,99,255,0.18);
+}
+
+/* indicador pequeño cuando hay un error */
+.sliderPuntuacion.error {
+  box-shadow: 0 0 0 4px rgba(255, 60, 60, 0.12);
+  border-radius: 12px;
+}
+
+/* estilos responsivos */
+@media (max-width: 480px) {
+  .sliderPuntuacion {
+    width: 92%;
+  }
+}

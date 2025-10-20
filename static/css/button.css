@@ -1,48 +1,98 @@
-button, .btn-agregar {
-  padding: 10px 20px;
-  border: none;
-  background-color: #6a4bc4;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 1em;
-  transition: all 0.2s;
+.acciones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 25px;
 }
 
-button:hover, .btn-agregar:hover {
-  background-color: #8368da;
+.acciones a,
+.acciones button,
+.btn-volver,
+.btn-agregar {
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.acciones a:hover,
+.acciones button:hover,
+.btn-volver:hover,
+.btn-agregar:hover {
   transform: scale(1.05);
 }
 
 .btn-volver {
-  display: inline-block;
-  text-align: center;
-  background-color: #ddd;
-  color: #333;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  margin: 20px auto;
-  transition: 0.2s;
+  background: #44405a;
 }
 
 .btn-volver:hover {
-  background-color: #ccc;
-  transform: scale(1.03);
+  background: #5b5675;
+}
+
+.btn-agregar {
+  background: #4CAF50;
+}
+
+.btn-agregar:hover {
+  background: #66BB6A;
+}
+
+.btn-editar {
+  background: #6c63ff;
+}
+
+.btn-editar:hover {
+  background: #837bff;
 }
 
 .btn-borrar {
-  background-color: #b81c1c;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  background: #c74b4b;
 }
 
 .btn-borrar:hover {
-  background-color: #d13838;
+  background: #e05b5b;
+}
+
+
+.agregar-form button {
+  grid-column: span 2;
+  background: #6c63ff;
+  border: none;
+  padding: 12px;
+  font-size: 1.05em;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.agregar-form button:hover {
+  background: #837bff;
+  transform: scale(1.03);
+}
+
+.editar-form button {
+  grid-column: span 2;
+  background: linear-gradient(90deg, #7b74ff, #5c52ff);
+  border: none;
+  padding: 12px;
+  font-size: 1.05em;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.editar-form button:hover {
+  background: linear-gradient(90deg, #8e87ff, #6f65ff);
+  transform: scale(1.03);
 }
