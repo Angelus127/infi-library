@@ -60,15 +60,34 @@
   box-shadow: 0 2px 10px rgba(108,99,255,0.18);
 }
 
-/* indicador pequeño cuando hay un error */
 .sliderPuntuacion.error {
   box-shadow: 0 0 0 4px rgba(255, 60, 60, 0.12);
   border-radius: 12px;
 }
 
-/* estilos responsivos */
 @media (max-width: 480px) {
   .sliderPuntuacion {
     width: 92%;
   }
 }
+
+.score {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #fff;
+  background-color: #444;
+  transition: background 0.3s ease;
+}
+
+.score[data-score^="9"],
+.score[data-score^="8"] { background: #4caf50; } /* verde */
+.score[data-score^="7"],
+.score[data-score^="6"] { background: #ffb300; } /* amarillo */
+.score[data-score^="5"],
+.score[data-score^="4"] { background: #ff7043; } /* naranja */
+.score[data-score^="3"],
+.score[data-score^="2"],
+.score[data-score^="1"] { background: #e53935; } /* rojo */

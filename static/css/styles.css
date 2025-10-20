@@ -22,3 +22,10 @@
   background: #8368da;
   transform: translateY(-3px);
 }
+
+.agregar-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}

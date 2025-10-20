@@ -42,30 +42,55 @@ def ver_multimedia(tipo):
 
     pagina = int(request.args.get('page', 1))
     busqueda = request.args.get('q', '')
+    estado = request.args.get('estado', '')
+    orden = request.args.get('orden', '')
     limite = 20
     offset = (pagina - 1) * limite
 
     conn = conectar()
     data = []
     total = 0
+    conteos = {}
 
     if conn:
-        cur = conn.cursor()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+        tabla = tablas[tipo]
+
+        cur.execute(f"SELECT status, COUNT(*) AS count FROM {tabla} GROUP BY status")
+        conteos_raw = cur.fetchall()
+        conteos = {fila['status']: fila['count'] for fila in conteos_raw}
+        cur.execute(f"SELECT COUNT(*) FROM {tabla}")
+        conteos['total'] = cur.fetchone()['count']
+
+        condiciones = []
+        parametros = []
 
         if busqueda:
-            query = f"SELECT * FROM {tablas[tipo]} WHERE title ILIKE %s ORDER BY id LIMIT %s OFFSET %s"
-            cur.execute(query, (f"%{busqueda}%", limite, offset))
-            data = cur.fetchall()
+            condiciones.append("title ILIKE %s")
+            parametros.append(f"%{busqueda}%")
 
-            cur.execute(f"SELECT COUNT(*) FROM {tablas[tipo]} WHERE title ILIKE %s", (f"%{busqueda}%",))
-            total = cur.fetchone()[0]
+        if estado:
+            condiciones.append("status = %s")
+            parametros.append(estado)
+
+        where_clause = "WHERE " + " AND ".join(condiciones) if condiciones else ""
+
+        if orden == 'titulo':
+            orden_sql = "ORDER BY title ASC"
+        elif orden == 'titulo_desc':
+            orden_sql = "ORDER BY title DESC"
+        elif orden == 'puntuacion':
+            orden_sql = "ORDER BY score DESC"
         else:
-            query = f"SELECT * FROM {tablas[tipo]} ORDER BY id LIMIT %s OFFSET %s"
-            cur.execute(query, (limite, offset))
-            data = cur.fetchall()
+            orden_sql = "ORDER BY id DESC"
 
-            cur.execute(f"SELECT COUNT(*) FROM {tablas[tipo]}")
-            total = cur.fetchone()[0]
+        query = f"SELECT * FROM {tabla} {where_clause} {orden_sql} LIMIT %s OFFSET %s"
+        parametros.extend([limite, offset])
+        cur.execute(query, tuple(parametros))
+        data = cur.fetchall()
+
+        cur.execute(f"SELECT COUNT(*) FROM {tabla} {where_clause}", tuple(parametros[:-2]))
+        total = cur.fetchone()['count']
 
         cur.close()
         conn.close()
@@ -78,7 +103,10 @@ def ver_multimedia(tipo):
         tipo=tipo,
         pagina=pagina,
         total_paginas=total_paginas,
-        busqueda=busqueda
+        busqueda=busqueda,
+        estado=estado,
+        orden=orden,
+        conteos=conteos
     )
 
 @app.route('/<tipo>/<int:item_id>')
@@ -300,7 +328,6 @@ def actualizar_puntuacion(tipo, item_id):
     if not data or 'score' not in data:
         return jsonify({'success': False, 'error': 'Payload inválido'}), 400
 
-    # fuerza a float con 1 decimal y evita 10.0
     try:
         score = float(data['score'])
         if score >= 10.0:

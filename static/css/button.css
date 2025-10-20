@@ -12,7 +12,8 @@
 .btn-agregar {
   color: #fff;
   border: none;
-  padding: 10px 18px;
+  padding: 12px 30px;
+  min-width: 250px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
@@ -95,4 +96,21 @@
 .editar-form button:hover {
   background: linear-gradient(90deg, #8e87ff, #6f65ff);
   transform: scale(1.03);
+}
+
+.buscar-form button {
+  background: linear-gradient(90deg, #5c3be8, #8b5fff);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(92,59,232,0.3);
+}
+
+.buscar-form button:hover {
+  background: linear-gradient(90deg, #7e4cff, #b18bff);
+  box-shadow: 0 0 14px rgba(130,80,255,0.6);
 }
