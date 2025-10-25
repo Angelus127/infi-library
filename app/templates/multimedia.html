@@ -4,7 +4,7 @@
 <h2>{{ tipo|capitalize }}</h2>
 
 <div class="multimedia-header">
-  <form class="buscar-form" method="get" action="{{ url_for('ver_multimedia', tipo=tipo) }}">
+  <form class="buscar-form" method="get" action="{{ url_for('multimedia_routes.ver_multimedia', tipo=tipo) }}">
     <input type="text" name="q" placeholder="Buscar por título..." value="{{ busqueda }}">
     <select name="estado">
       <option value="" {% if not estado %}selected{% endif %}>Todos</option>
@@ -32,7 +32,7 @@
   </div>
 
   <div class="agregar-wrapper">
-    <a href="{{ url_for('agregar', tipo=tipo) }}" class="btn-agregar">
+    <a href="{{ url_for('admin_routes.agregar', tipo=tipo) }}" class="btn-agregar">
       ➕ Agregar {{ tipo|capitalize }}
     </a>
   </div>
@@ -41,7 +41,7 @@
   <div class="galeria">
     {% for item in data %}
     <div class="card">
-      <a href="{{ url_for('ver_detalle', tipo=tipo, item_id=item.id) }}">
+      <a href="{{ url_for('multimedia_routes.ver_detalle', tipo=tipo, item_id=item.id) }}">
         <h3>{{ item.title }}</h3>
         <span class="score" data-score="{{ item.score }}">{{ item.score }}</span>
       </a>
@@ -54,13 +54,13 @@
   {% if total_paginas > 1 %}
   <div class="paginacion">
     {% if pagina > 1 %}
-      <a href="{{ url_for('ver_multimedia', tipo=tipo, page=pagina-1, q=busqueda, estado=estado, orden=orden) }}">⬅ Anterior</a>
+      <a href="{{ url_for('multimedia_routes.ver_multimedia', tipo=tipo, page=pagina-1, q=busqueda, estado=estado, orden=orden) }}">⬅ Anterior</a>
     {% endif %}
 
     <span>Página {{ pagina }} de {{ total_paginas }}</span>
 
     {% if pagina < total_paginas %}
-      <a href="{{ url_for('ver_multimedia', tipo=tipo, page=pagina+1, q=busqueda, estado=estado, orden=orden) }}">Siguiente ➡</a>
+      <a href="{{ url_for('multimedia_routes.ver_multimedia', tipo=tipo, page=pagina+1, q=busqueda, estado=estado, orden=orden) }}">Siguiente ➡</a>
     {% endif %}
   </div>
   {% endif %}

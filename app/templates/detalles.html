@@ -36,19 +36,19 @@
     <div class="estado-selector">
       <h3>Estado</h3>
       <div class="estado-botones">
-        <form method="post" action="{{ url_for('actualizar_estado', tipo=tipo, item_id=item['id'], nuevo_estado=1) }}">
+        <form method="post" action="{{ url_for('admin_routes.actualizar_estado', tipo=tipo, item_id=item['id'], nuevo_estado=1) }}">
           <button type="submit" class="estado ongoing {% if item['status'] == 'Ongoing' %}activo{% endif %}">
             ⏳ En curso
           </button>
         </form>
   
-        <form method="post" action="{{ url_for('actualizar_estado', tipo=tipo, item_id=item['id'], nuevo_estado=2) }}">
+        <form method="post" action="{{ url_for('admin_routes.actualizar_estado', tipo=tipo, item_id=item['id'], nuevo_estado=2) }}">
           <button type="submit" class="estado finished {% if item['status'] == 'Finished' %}activo{% endif %}">
             🏁 Terminada
           </button>
         </form>
   
-        <form method="post" action="{{ url_for('actualizar_estado', tipo=tipo, item_id=item['id'], nuevo_estado=3) }}">
+        <form method="post" action="{{ url_for('admin_routes.actualizar_estado', tipo=tipo, item_id=item['id'], nuevo_estado=3) }}">
           <button type="submit" class="estado planned {% if item['status'] == 'Planned' %}activo{% endif %}">
             📅 Planeada
           </button>
@@ -58,9 +58,9 @@
   </div>
   
   <div class="acciones">
-    <a class="btn-volver" href="{{ url_for('ver_multimedia', tipo=tipo) }}">⬅ Volver a {{ tipo }}</a>
-    <a class="btn-editar" href="{{ url_for('editar', tipo=tipo, item_id=item.id) }}">✎ Editar</a>
-    <form action="{{ url_for('borrar', tipo=tipo, item_id=item.id) }}" method="post" onsubmit="return confirm('¿Seguro que deseas borrar este elemento?');">
+    <a class="btn-volver" href="{{ url_for('multimedia_routes.ver_multimedia', tipo=tipo) }}">⬅ Volver a {{ tipo }}</a>
+    <a class="btn-editar" href="{{ url_for('admin_routes.editar', tipo=tipo, item_id=item.id) }}">✎ Editar</a>
+    <form action="{{ url_for('admin_routes.borrar', tipo=tipo, item_id=item.id) }}" method="post" onsubmit="return confirm('¿Seguro que deseas borrar este elemento?');">
       <button type="submit" class="btn-borrar">🗑️ Borrar</button>
     </form>
   </div>

@@ -79,5 +79,5 @@
     <button type="submit">Guardar {{ tipo|capitalize }}</button>
   </form>
 
-  <a href="{{ url_for('ver_multimedia', tipo=tipo) }}" class="btn-volver">← Volver</a>
+  <a href="{{ url_for('multimedia_routes.ver_multimedia', tipo=tipo) }}" class="btn-volver">← Volver</a>
 {% endblock %}

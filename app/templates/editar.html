@@ -56,5 +56,5 @@
     <button type="submit">Guardar cambios</button>
   </form>
 
-  <a href="{{ url_for('ver_detalle', tipo=tipo, item_id=item.id) }}" class="btn-volver">← Volver</a>
+  <a href="{{ url_for('multimedia_routes.ver_detalle', tipo=tipo, item_id=item.id) }}" class="btn-volver">← Volver</a>
 {% endblock %}
